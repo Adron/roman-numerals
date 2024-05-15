@@ -6,21 +6,13 @@ public static class RomanConvert
 {
     public static string BuildRomanNumeral(int n)
     {
-        var result = new StringBuilder();
-        
-        // Define Roman numeral symbols and their corresponding values
-        int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
-        string[] symbols = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
-        
-        for (var i = 0; i < values.Length; i++)
-        {
-            while (n >= values[i])
-            {
-                result.Append(symbols[i]);
-                n -= values[i];
-            }
-        }
+        if (n == 0) return string.Empty;
 
-        return result.ToString();
+        return new Dictionary<int, string>
+        {
+            {1000, "M"}, {900, "CM"}, {500, "D"}, {400, "CD"},
+            {100, "C"}, {90, "XC"}, {50, "L"}, {40, "XL"},
+            {10, "X"}, {9, "IX"}, {5, "V"}, {4, "IV"}, {1, "I"}
+        }.Where(p => n >= p.Key).Select(p => p.Value + BuildRomanNumeral(n - p.Key)).FirstOrDefault()!;
     }
 }

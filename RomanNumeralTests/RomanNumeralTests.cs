@@ -37,5 +37,38 @@ namespace RomanNumeralTests
         {
             Assert.That(RomanConvert.BuildRomanNumeral(value), Is.EqualTo(expected));
         }
+
+        [Test]
+        [TestCase("", 0)]
+        [TestCase("I", 1)]
+        [TestCase("II", 2)]
+        [TestCase("III", 3)]
+        [TestCase("IV", 4)]
+        [TestCase("V", 5)]
+        [TestCase("VI", 6)]
+        [TestCase("VII", 7)]
+        [TestCase("VIII", 8)]
+        [TestCase("IX", 9)]
+        [TestCase("X", 10)]
+        [TestCase("XI", 11)]
+        [TestCase("XLIV", 44)]
+        [TestCase("L", 50)]
+        [TestCase("LIX", 59)]
+        [TestCase("XCIX", 99)]
+        [TestCase("C", 100)]
+        [TestCase("CXCIX", 199)]
+        [TestCase("CDXLIV", 444)]
+        [TestCase("CM", 900)]
+        [TestCase("CMXCIX", 999)]
+        [TestCase("M", 1000)]
+        [TestCase("MCMLIV", 1954)]
+        [TestCase("MMXIV", 2014)]
+        [TestCase("MMMCMXCIX", 3999)]
+        public void ConvertFromRomanTests(string roman, int expected)
+        {
+            Assert.That(RomanConvert.ConvertFromRoman(roman), Is.EqualTo(expected));
+        }
+        
+
     }
 }
